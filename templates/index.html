@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="DESA — Dynamic Engineering & Site Automation System for AI-driven construction management">
+    <title>DESA — Dynamic Engineering & Site Automation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <!-- ─── SIDEBAR ──────────────────────────────────────────── -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon">
+                <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                    <rect x="2" y="2" width="28" height="28" rx="6" stroke="var(--accent-blue)" stroke-width="2" />
+                    <path d="M8 24V12L16 8L24 12V24" stroke="var(--accent-blue)" stroke-width="2"
+                        stroke-linecap="round" />
+                    <rect x="12" y="16" width="8" height="8" rx="1" fill="var(--accent-blue)" opacity="0.3" />
+                    <circle cx="16" cy="12" r="2" fill="var(--accent-amber)" />
+                </svg>
+            </div>
+            <span class="brand-text">DESA</span>
+        </div>
+
+        <div class="nav-links">
+            <button class="nav-btn active" data-module="generative" title="Generative Design Studio">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5" />
+                    <line x1="12" y1="22" x2="12" y2="15.5" />
+                    <polyline points="22 8.5 12 15.5 2 8.5" />
+                </svg>
+                <span>Design Studio</span>
+            </button>
+            <button class="nav-btn" data-module="sensors" title="Live Site Sensors">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                </svg>
+                <span>Live Sensors</span>
+            </button>
+            <button class="nav-btn" data-module="recalibration" title="Recalibration Engine">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="3" />
+                    <path
+                        d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+                </svg>
+                <span>Recalibration</span>
+            </button>
+            <button class="nav-btn" data-module="risk" title="Risk Predictor">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path
+                        d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                    <line x1="12" y1="9" x2="12" y2="13" />
+                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+                <span>Risk Predictor</span>
+            </button>
+            <button class="nav-btn" data-module="integration" title="Integration Hub">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="2" width="20" height="8" rx="2" />
+                    <rect x="2" y="14" width="20" height="8" rx="2" />
+                    <line x1="6" y1="6" x2="6.01" y2="6" />
+                    <line x1="6" y1="18" x2="6.01" y2="18" />
+                </svg>
+                <span>Integration Hub</span>
+            </button>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="system-status">
+                <span class="status-dot pulse"></span>
+                <span class="status-text">System Online</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ─── MAIN CONTENT ─────────────────────────────────────── -->
+    <main class="main-content">
+        <!-- HEADER -->
+        <header class="top-header">
+            <div class="header-left">
+                <h1 class="header-title">Dynamic Engineering & Site Automation</h1>
+                <span class="header-subtitle" id="activeModuleLabel">Generative Design Studio</span>
+            </div>
+            <div class="header-right">
+                <div class="header-stat">
+                    <span class="stat-icon">📊</span>
+                    <span class="stat-label">Data Points</span>
+                    <span class="stat-value" id="dataPointsCount">24.8K</span>
+                </div>
+                <div class="header-stat">
+                    <span class="stat-icon">⚡</span>
+                    <span class="stat-label">Uptime</span>
+                    <span class="stat-value">99.7%</span>
+                </div>
+                <div class="live-clock">
+                    <span class="clock-icon">🕐</span>
+                    <span id="liveClock">--:--:--</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- ═══ MODULE 1: GENERATIVE DESIGN ═══ -->
+        <section class="module-panel active" id="panel-generative">
+            <div class="module-header">
+                <h2>🔷 Generative Design Studio</h2>
+                <p class="module-desc">Input site parameters and let AI generate optimized structural design variants
+                </p>
+            </div>
+
+            <!-- Top Row: Form + 3D Preview -->
+            <div class="design-top-row">
+                <div class="design-form-card glass-card">
+                    <h3>Site Parameters</h3>
+                    <form id="designForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="siteLength">Site Length (m)</label>
+                                <input type="number" id="siteLength" value="120" min="10" max="500">
+                            </div>
+                            <div class="form-group">
+                                <label for="siteWidth">Site Width (m)</label>
+                                <input type="number" id="siteWidth" value="80" min="10" max="500">
+                            </div>
+                            <div class="form-group">
+                                <label for="soilType">Soil Type</label>
+                                <select id="soilType">
+                                    <option value="clay">Clay</option>
+                                    <option value="sandy">Sandy</option>
+                                    <option value="rocky" selected>Rocky</option>
+                                    <option value="loamy">Loamy</option>
+                                    <option value="alluvial">Alluvial</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="maxLoad">Max Load (kN)</label>
+                                <input type="number" id="maxLoad" value="500" min="100" max="2000">
+                            </div>
+                            <div class="form-group">
+                                <label for="floors">Number of Floors</label>
+                                <input type="number" id="floors" value="12" min="1" max="100">
+                            </div>
+                            <div class="form-group">
+                                <label for="budget">Budget (₹ Cr)</label>
+                                <input type="number" id="budget" value="45" min="5" max="500">
+                            </div>
+                        </div>
+                        <div class="form-group prompt-group">
+                            <label for="userPrompt">🤖 AI Design Prompt (Optional)</label>
+                            <textarea id="userPrompt" rows="3"
+                                placeholder="e.g. Prioritize sustainability with green materials and minimize carbon footprint..."></textarea>
+                        </div>
+                        <div class="form-group api-key-group">
+                            <label for="geminiKey">🔑 Gemini API Key</label>
+                            <input type="password" id="geminiKey" value="AIzaSyBnwkUigIeLzgNb6AdAnEmvmrHZUVNRzGk"
+                                placeholder="Paste your Gemini API key here">
+                            <span class="api-hint">Get free key at <a href="https://aistudio.google.com/apikey"
+                                    target="_blank">aistudio.google.com</a></span>
+                        </div>
+                        <div class="ai-source-badge" id="aiSourceBadge" style="display:none;">
+                            <span class="source-dot"></span>
+                            <span id="aiSourceLabel">—</span>
+                        </div>
+                        <button type="submit" class="btn-primary" id="generateBtn">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10" />
+                            </svg>
+                            Generate Design Variants
+                        </button>
+                    </form>
+                </div>
+
+                <!-- 3D Design Preview -->
+                <div class="design-preview glass-card" id="designPreview">
+                    <div class="preview-header">
+                        <h3>🏗 Structural Design Preview</h3>
+                        <div class="preview-variant-label" id="previewVariantLabel">No variant selected</div>
+                    </div>
+                    <div class="preview-canvas-wrap">
+                        <canvas id="designCanvas" width="700" height="420"></canvas>
+                    </div>
+                    <div class="preview-specs" id="previewSpecs">
+                        <div class="spec-item"><span class="spec-label">Material</span><span class="spec-val"
+                                id="specMaterial">—</span></div>
+                        <div class="spec-item"><span class="spec-label">Est. Cost</span><span class="spec-val"
+                                id="specCost">—</span></div>
+                        <div class="spec-item"><span class="spec-label">Duration</span><span class="spec-val"
+                                id="specDays">—</span></div>
+                        <div class="spec-item"><span class="spec-label">CO₂ Reduce</span><span class="spec-val"
+                                id="specCO2">—</span></div>
+                        <div class="spec-item"><span class="spec-label">Overall</span><span class="spec-val highlight"
+                                id="specOverall">—</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Row: Variant Cards -->
+            <div class="variant-selector-section" id="variantSelectorSection" style="display:none;">
+                <div class="variant-selector-header">
+                    <h3>Select a Design Variant</h3>
+                    <p>Click a variant card to preview its structural design</p>
+                </div>
+                <div class="variant-cards-row" id="designResults">
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ MODULE 2: LIVE SENSORS ═══ -->
+        <section class="module-panel" id="panel-sensors">
+            <div class="module-header">
+                <h2>📡 Live Site Sensor Dashboard</h2>
+                <p class="module-desc">Real-time monitoring of 4 critical site parameters with auto-updating values</p>
+            </div>
+
+            <div class="sensor-tiles" id="sensorTiles">
+                <!-- Populated by JS -->
+            </div>
+
+            <div class="chart-section glass-card">
+                <div class="chart-header">
+                    <h3>24-Hour Sensor Timeline</h3>
+                    <div class="chart-tabs">
+                        <button class="chart-tab active" data-sensor="soil_pressure">Soil Pressure</button>
+                        <button class="chart-tab" data-sensor="temperature">Temperature</button>
+                        <button class="chart-tab" data-sensor="structural_load">Structural Load</button>
+                        <button class="chart-tab" data-sensor="moisture">Moisture</button>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <canvas id="sensorChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ MODULE 3: RECALIBRATION ═══ -->
+        <section class="module-panel" id="panel-recalibration">
+            <div class="module-header">
+                <h2>⚙️ Design Recalibration Engine</h2>
+                <p class="module-desc">AI-detected conflicts between design assumptions and real site conditions</p>
+            </div>
+
+            <div class="recalib-alert glass-card" id="recalibAlert">
+                <div class="alert-header">
+                    <span class="alert-badge">⚠️ ACTIVE CONFLICT</span>
+                    <span class="alert-id" id="alertId">RCL-0000</span>
+                </div>
+                <div class="alert-trigger" id="alertTrigger">Loading...</div>
+                <div class="comparison-panel">
+                    <div class="compare-col original">
+                        <div class="compare-label">📐 Original Design</div>
+                        <div class="compare-value" id="originalDesign">—</div>
+                    </div>
+                    <div class="compare-arrow">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--accent-amber)"
+                            stroke-width="2">
+                            <line x1="5" y1="12" x2="19" y2="12" />
+                            <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                    </div>
+                    <div class="compare-col adjusted">
+                        <div class="compare-label">🤖 AI Adjustment</div>
+                        <div class="compare-value" id="aiAdjustment">—</div>
+                    </div>
+                </div>
+                <div class="alert-impact" id="alertImpact">—</div>
+                <div class="alert-actions">
+                    <button class="btn-accept" id="btnAccept">✓ Accept Adjustment</button>
+                    <button class="btn-reject" id="btnReject">✕ Reject</button>
+                </div>
+            </div>
+
+            <div class="audit-section glass-card">
+                <h3>📋 Recalibration Audit Log</h3>
+                <div class="audit-table-wrap">
+                    <table class="audit-table" id="auditTable">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Timestamp</th>
+                                <th>Trigger</th>
+                                <th>Action</th>
+                                <th>Result</th>
+                            </tr>
+                        </thead>
+                        <tbody id="auditBody">
+                            <tr>
+                                <td colspan="5" class="empty-row">No audit entries yet</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ MODULE 4: RISK PREDICTOR ═══ -->
+        <section class="module-panel" id="panel-risk">
+            <div class="module-header">
+                <h2>⚠️ Simulation & Risk Predictor</h2>
+                <p class="module-desc">Predicted vs actual site progress, risk flags, and cost savings from AI
+                    recalibrations</p>
+            </div>
+
+            <div class="progress-comparison glass-card" id="progressSection">
+                <h3>📈 Project Progress</h3>
+                <div class="progress-bars">
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Predicted Progress</span>
+                            <span class="progress-pct" id="predictedPct">—%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill predicted" id="predictedBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Actual Progress</span>
+                            <span class="progress-pct" id="actualPct">—%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-fill actual" id="actualBar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="schedule-variance" id="scheduleVariance">—</div>
+            </div>
+
+            <div class="risk-cards" id="riskCards">
+                <!-- Populated by JS -->
+            </div>
+
+            <div class="savings-section glass-card" id="savingsSection">
+                <h3>💎 AI-Driven Savings Summary</h3>
+                <div class="savings-grid" id="savingsGrid">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ═══ MODULE 5: INTEGRATION HUB ═══ -->
+        <section class="module-panel" id="panel-integration">
+            <div class="module-header">
+                <h2>🔗 Integration Hub</h2>
+                <p class="module-desc">Real-time data feed status from all connected construction systems and APIs</p>
+            </div>
+
+            <div class="integration-grid" id="integrationGrid">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+
+</html>
